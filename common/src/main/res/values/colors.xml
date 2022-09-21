@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Should be override in other application -->
+    <color name="button_active">#FFFFFF</color>
+    <color name="button_inactive">#898989</color>
+    <color name="button_text_active">#282828</color>
+    <color name="button_text_inactive">#EAEAEA</color>
+</resources>
