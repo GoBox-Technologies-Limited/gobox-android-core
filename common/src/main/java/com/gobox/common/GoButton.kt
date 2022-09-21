@@ -1,10 +1,9 @@
-package com.gobox.common.component
+package com.gobox.common
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatButton
-import com.gobox.common.R
 
 class GoButton: AppCompatButton {
     private var isActive: Boolean = true
