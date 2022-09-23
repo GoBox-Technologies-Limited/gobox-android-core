@@ -16,22 +16,22 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <com.gobox.core.ui.GoButton
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_marginEnd="4dp"
-            android:textSize="24dp"
-            android:text="Button12322415"
-            android:drawableLeft="@drawable/ic_tick_circle"/>
-        <com.gobox.core.ui.GoButton
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:textSize="14dp"
-            android:text="Btn12"
-            android:drawableLeft="@drawable/ic_tick_circle"
-            app:isActive="false"/>
+<!--        <com.gobox.core.ui.GoButton-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            android:textSize="24dp"-->
+<!--            android:text="Button12322415"-->
+<!--            android:drawableLeft="@drawable/ic_tick_circle"/>-->
+<!--        <com.gobox.core.ui.GoButton-->
+<!--            android:layout_width="120dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginEnd="4dp"-->
+<!--            android:textSize="14dp"-->
+<!--            android:text="Btn12"-->
+<!--            android:drawableLeft="@drawable/ic_tick_circle"-->
+<!--            app:isActive="false"/>-->
     </LinearLayout>
 
 
