@@ -1,4 +1,4 @@
-package com.gobox.common
+package com.gobox.core
 
 import org.junit.Test
 

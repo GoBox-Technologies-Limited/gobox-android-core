@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace 'com.gobox.common'
+    namespace 'com.gobox.core'
     compileSdk 32
 
     defaultConfig {
@@ -32,6 +32,7 @@ android {
 }
 
 dependencies {
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.6.1'
@@ -46,8 +47,8 @@ afterEvaluate {
             release(MavenPublication) {
                 from components.release
                 groupId = 'com.github.GoBox-Technologies-Limited'
-                artifactId = 'gobox-android-common'
-                version = '0.1.2'
+                artifactId = 'gobox-android-core'
+                version = '0.1.0'
             }
         }
     }

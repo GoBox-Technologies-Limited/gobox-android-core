@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "GoBox"
 include ':app'
 include ':common'
+include ':core'
