@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <declare-styleable name="GoButton">
         <attr name="go_radius" format="dimension"/>
         <attr name="go_active" format="boolean"/>

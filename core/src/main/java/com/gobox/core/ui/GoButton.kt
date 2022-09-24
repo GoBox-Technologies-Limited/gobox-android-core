@@ -69,21 +69,21 @@ class GoButton: AppCompatButton {
             var drawableWidth = 0
             if (compoundDrawables[0]!=null) {
                 // add left drawable width with default padding 2
-                drawableWidth += compoundDrawables[0].intrinsicWidth
+                drawableWidth += compoundDrawables[0].intrinsicWidth + 2
             }
             if (compoundDrawables[2]!=null) {
                 // add right drawable width with default padding 2
-                drawableWidth += compoundDrawables[2].intrinsicWidth
+                drawableWidth += compoundDrawables[2].intrinsicWidth + 2
             }
 
             var drawableHeight = 0
             if (compoundDrawables[1]!=null) {
                 // add left drawable width with default padding 2
-                drawableHeight += compoundDrawables[1].intrinsicHeight
+                drawableHeight += compoundDrawables[1].intrinsicHeight + 2
             }
             if (compoundDrawables[3]!=null) {
                 // add right drawable width with default padding 2
-                drawableHeight += compoundDrawables[3].intrinsicHeight
+                drawableHeight += compoundDrawables[3].intrinsicHeight + 2
             }
 
             val textWidth = paint.measureText(text.toString(), 0, text.length)
