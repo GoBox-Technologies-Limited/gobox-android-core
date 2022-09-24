@@ -16,7 +16,7 @@ import com.gobox.core.R
 
 class GoButton: AppCompatButton {
     private var active: Boolean = true
-    private var radius: Int = 8
+    private var radius: Float = 16F
     private var activeBackgroundColorResId: Int = R.color.button_active
     private var activeTextColorResId: Int = R.color.button_text_active
     private var inactiveBackgroundColorResId: Int = R.color.button_inactive
@@ -34,7 +34,7 @@ class GoButton: AppCompatButton {
                     active = myAttrs.getBoolean(attr, true)
                 }
                 R.styleable.GoButton_go_radius -> {
-                    radius = myAttrs.getInt(attr, 8)
+                    radius = myAttrs.getDimension(attr, 16F)
                 }
                 R.styleable.GoButton_go_active_background_color -> {
                     activeBackgroundColorResId = myAttrs.getResourceId(attr, 0)
@@ -101,7 +101,7 @@ class GoButton: AppCompatButton {
         if (active) {
             // 1. Set background color
             val shape = GradientDrawable()
-            shape.cornerRadius = radius.toFloat()
+            shape.cornerRadius = radius
             shape.setColor(context.getColor(activeBackgroundColorResId))
             background = shape
 
@@ -117,7 +117,7 @@ class GoButton: AppCompatButton {
         } else {
             // 1. Set background color
             val shape = GradientDrawable()
-            shape.cornerRadius = radius.toFloat()
+            shape.cornerRadius = radius
             shape.setColor(context.getColor(inactiveBackgroundColorResId))
             background = shape
 
