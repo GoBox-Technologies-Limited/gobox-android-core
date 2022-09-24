@@ -26,8 +26,10 @@
             android:layout_width="wrap_content"
             android:layout_height="32dp"
             android:layout_marginEnd="4dp"
-            android:textSize="18sp"
-            android:text="確定"/>
+            android:textSize="12sp"
+            android:text="確定"
+            app:go_active_text_color="@color/white"
+            app:go_reverse_color="true"/>
         <com.gobox.core.ui.GoButton
             android:layout_width="wrap_content"
             android:layout_height="32dp"

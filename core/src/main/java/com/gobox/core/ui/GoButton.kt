@@ -1,21 +1,16 @@
 package com.gobox.core.ui
 
 import android.content.Context
-import android.content.res.ColorStateList
 import android.graphics.*
-import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.toColor
-import androidx.core.view.marginTop
 import com.gobox.core.R
 
 
 class GoButton: AppCompatButton {
     private var active: Boolean = true
+    private var reverseColor: Boolean = false
     private var radius: Float = 16F
     private var activeBackgroundColorResId: Int = R.color.button_active
     private var activeTextColorResId: Int = R.color.button_text_active
@@ -32,6 +27,9 @@ class GoButton: AppCompatButton {
             when (val attr = myAttrs.getIndex(i)) {
                 R.styleable.GoButton_go_active -> {
                     active = myAttrs.getBoolean(attr, true)
+                }
+                R.styleable.GoButton_go_reverse_color -> {
+                    reverseColor = myAttrs.getBoolean(attr, true)
                 }
                 R.styleable.GoButton_go_radius -> {
                     radius = myAttrs.getDimension(attr, 16F)
@@ -98,37 +96,35 @@ class GoButton: AppCompatButton {
     }
 
     private fun refreshButton() {
-        if (active) {
-            // 1. Set background color
-            val shape = GradientDrawable()
-            shape.cornerRadius = radius
-            shape.setColor(context.getColor(activeBackgroundColorResId))
-            background = shape
+        var borderColor = context.getColor(activeBackgroundColorResId)
+        var backgroundColor = context.getColor(activeBackgroundColorResId)
+        var textColor = context.getColor(activeTextColorResId)
 
-            // 2. Set text color
-            setTextColor(context.getColor(activeTextColorResId))
+        if (!active) {
+            borderColor = context.getColor(inactiveBackgroundColorResId)
+            backgroundColor = context.getColor(inactiveBackgroundColorResId)
+            textColor = context.getColor(inactiveTextColorResId)
+        }
 
-            // 3. Set image color
-            compoundDrawables.forEach {
-                if (it != null) {
-                    it.colorFilter = PorterDuffColorFilter(ContextCompat.getColor(context, R.color.button_text_active), PorterDuff.Mode.SRC_IN)
-                }
-            }
-        } else {
-            // 1. Set background color
-            val shape = GradientDrawable()
-            shape.cornerRadius = radius
-            shape.setColor(context.getColor(inactiveBackgroundColorResId))
-            background = shape
+        if (reverseColor) {
+            backgroundColor = textColor
+            textColor = borderColor
+        }
 
-            // 2. Set text color
-            setTextColor(context.getColor(inactiveTextColorResId))
+        // 1. Set background color
+        val gd = GradientDrawable()
+        gd.setColor(backgroundColor)
+        gd.cornerRadius = radius
+        gd.setStroke(2, borderColor)
+        background = gd
 
-            // 3. Set image color
-            compoundDrawables.forEach {
-                if (it != null) {
-                    it.colorFilter = PorterDuffColorFilter(ContextCompat.getColor(context, R.color.button_text_inactive), PorterDuff.Mode.SRC_IN)
-                }
+        // 2. Set text color
+        setTextColor(textColor)
+
+        // 3. Set image color
+        compoundDrawables.forEach {
+            if (it != null) {
+                it.colorFilter = PorterDuffColorFilter(textColor, PorterDuff.Mode.SRC_IN)
             }
         }
     }
