@@ -1,32 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
-        android:background="@color/black"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:background="@color/black">
 
         <com.gobox.core.ui.GoButton
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:layout_weight="1"
             android:layout_marginEnd="4dp"
-            android:textSize="24sp"
-            android:text="Button12322415"
+            android:textSize="16sp"
+            android:text="Button我15121"
             android:drawableLeft="@drawable/ic_tick_circle"/>
         <com.gobox.core.ui.GoButton
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginEnd="4dp"
+            android:textSize="18sp"
+            android:text="確定"/>
+        <com.gobox.core.ui.GoButton
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
             android:layout_marginEnd="4dp"
             android:textSize="18sp"
             android:text="確定叫車"
@@ -34,5 +38,112 @@
             app:go_active="false"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/black">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:textSize="16sp"
+            android:text="Button我15121"
+            android:drawableLeft="@drawable/ic_tick_circle"/>
+    </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/black">
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:textSize="16sp"
+            android:text="我2321141223123115121E12H14D3414h"
+            android:drawableLeft="@drawable/ic_tick_circle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/black">
+        <com.gobox.core.ui.GoButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:textSize="16sp"
+            android:text="我2321141223123115121E12H14D3414h"
+            android:drawableLeft="@drawable/ic_tick_circle"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/black">
+
+        <com.gobox.core.ui.GoButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:textSize="18sp"
+            android:text="確定叫車"
+            android:drawableTop="@drawable/ic_tick_circle"
+            app:go_active="false"/>
+        <com.gobox.core.ui.GoButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:textSize="18sp"
+            android:text="確定叫車"
+            android:drawableBottom="@drawable/ic_tick_circle"
+            app:go_active="false"/>
+        <com.gobox.core.ui.GoButton
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginEnd="4dp"
+            android:textSize="18sp"
+            android:text="確定叫車"
+            android:drawableTop="@drawable/ic_tick_circle"
+            app:go_active="false"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/black">
+
+        <com.gobox.core.ui.GoButton
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="4dp"
+            android:textSize="18sp"
+            android:text="確定叫車"
+            android:drawableLeft="@drawable/ic_tick_circle"
+            android:drawableRight="@drawable/ic_tick_circle"
+            app:go_active="false"/>
+        <com.gobox.core.ui.GoButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:textSize="18sp"
+            android:text="確定叫車"
+            android:drawableLeft="@drawable/ic_tick_circle"
+            android:drawableRight="@drawable/ic_tick_circle"
+            app:go_active="false"/>
+    </LinearLayout>
+
+</LinearLayout>

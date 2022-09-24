@@ -2,10 +2,7 @@ package com.gobox.core.ui
 
 import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Canvas
-import android.graphics.ColorFilter
-import android.graphics.PorterDuff
-import android.graphics.PorterDuffColorFilter
+import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
@@ -62,7 +59,12 @@ class GoButton: AppCompatButton {
     }
 
     override fun onDraw(canvas: Canvas?) {
-        if (compoundDrawables[0]!=null) {
+        text = text.toString().uppercase()
+        // set default padding to zero
+        setPadding(0, 0, 0, 0)
+
+        // handle left & right drawables
+        if (compoundDrawables[0]!=null || compoundDrawables[1]!=null || compoundDrawables[2]!=null || compoundDrawables[3]!=null) {
             // has drawable images
             var drawableWidth = 0
             if (compoundDrawables[0]!=null) {
@@ -74,9 +76,23 @@ class GoButton: AppCompatButton {
                 drawableWidth += compoundDrawables[2].intrinsicWidth
             }
 
-            val textWidth = (paint.measureText(text.toString()) + textSize).toInt()
-            val autoPadding: Int = (width - drawableWidth - textWidth) / 2
-            setPadding(autoPadding, 0, autoPadding, 0)
+            var drawableHeight = 0
+            if (compoundDrawables[1]!=null) {
+                // add left drawable width with default padding 2
+                drawableHeight += compoundDrawables[1].intrinsicHeight
+            }
+            if (compoundDrawables[3]!=null) {
+                // add right drawable width with default padding 2
+                drawableHeight += compoundDrawables[3].intrinsicHeight
+            }
+
+            val textWidth = paint.measureText(text.toString(), 0, text.length)
+            val textHeight = paint.fontMetrics.bottom - paint.fontMetrics.top
+            var horizontalPadding: Int = ((width - drawableWidth - textWidth) / 2).toInt()
+            if (horizontalPadding<0) horizontalPadding=0
+            var verticalPadding: Int = ((height - drawableHeight - textHeight) / 2).toInt()
+            if (verticalPadding<0) verticalPadding=0
+            setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding)
         }
         super.onDraw(canvas)
     }
