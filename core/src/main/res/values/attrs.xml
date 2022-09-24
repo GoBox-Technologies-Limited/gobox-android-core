@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="GoButton">
-        <attr name="isActive" format="boolean"/>
+        <attr name="go_radius" format="integer"/>
+        <attr name="go_active" format="boolean"/>
+        <attr name="go_active_background_color" format="reference"/>
+        <attr name="go_active_text_color" format="reference"/>
+        <attr name="go_inactive_background_color" format="reference"/>
+        <attr name="go_inactive_text_color" format="reference"/>
     </declare-styleable>
 </resources>
