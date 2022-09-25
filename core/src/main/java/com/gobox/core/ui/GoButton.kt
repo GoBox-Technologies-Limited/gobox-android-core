@@ -7,7 +7,6 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatButton
 import com.gobox.core.R
 
-
 class GoButton: AppCompatButton {
     private var active: Boolean = true
     private var reverseColor: Boolean = false
@@ -58,18 +57,16 @@ class GoButton: AppCompatButton {
 
     override fun onDraw(canvas: Canvas?) {
         text = text.toString().uppercase()
+
         // set default padding to zero
         setPadding(0, 0, 0, 0)
 
-        // resize drawables to text size
-        compoundDrawables.forEach {
-
-        }
-
         // handle left & right drawables
+        var drawableWidth = 0
+        var drawableHeight = 0
+
         if (compoundDrawables[0]!=null || compoundDrawables[1]!=null || compoundDrawables[2]!=null || compoundDrawables[3]!=null) {
             // has drawable images
-            var drawableWidth = 0
             if (compoundDrawables[0]!=null) {
                 // add left drawable width with default padding 2
                 drawableWidth += compoundDrawables[0].intrinsicWidth + 2
@@ -79,7 +76,6 @@ class GoButton: AppCompatButton {
                 drawableWidth += compoundDrawables[2].intrinsicWidth + 2
             }
 
-            var drawableHeight = 0
             if (compoundDrawables[1]!=null) {
                 // add left drawable width with default padding 2
                 drawableHeight += compoundDrawables[1].intrinsicHeight + 2
@@ -88,15 +84,20 @@ class GoButton: AppCompatButton {
                 // add right drawable width with default padding 2
                 drawableHeight += compoundDrawables[3].intrinsicHeight + 2
             }
-
-            val textWidth = paint.measureText(text.toString(), 0, text.length)
-            val textHeight = paint.fontMetrics.bottom - paint.fontMetrics.top
-            var horizontalPadding: Int = ((width - drawableWidth - textWidth) / 2).toInt()
-            if (horizontalPadding<0) horizontalPadding=0
-            var verticalPadding: Int = ((height - drawableHeight - textHeight) / 2).toInt()
-            if (verticalPadding<0) verticalPadding=0
-            setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding)
         }
+        val textWidth = paint.measureText(text.toString(), 0, text.length)
+        val textHeight = paint.fontMetrics.bottom - paint.fontMetrics.top
+        var horizontalPadding: Int = ((width - drawableWidth - textWidth) / 2).toInt()
+        if (horizontalPadding < 0) {
+            horizontalPadding = 0
+        }
+        var verticalPadding: Int = ((height - drawableHeight - textHeight) / 2).toInt()
+        if (verticalPadding < 0) {
+            verticalPadding = 0
+        }
+
+        setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding)
+
         super.onDraw(canvas)
     }
 
@@ -132,6 +133,8 @@ class GoButton: AppCompatButton {
                 it.colorFilter = PorterDuffColorFilter(textColor, PorterDuff.Mode.MULTIPLY)
             }
         }
+
+        stateListAnimator = null
     }
 
     fun setActive(act: Boolean) {

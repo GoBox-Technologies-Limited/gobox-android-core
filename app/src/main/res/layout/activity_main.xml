@@ -43,6 +43,48 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.gobox.core.ui.GoButton
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="4dp"
+                android:textSize="16sp"
+                android:text="Button"
+                android:drawableLeft="@drawable/ic_tick_circle"/>
+            <com.gobox.core.ui.GoButton
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="4dp"
+                android:textSize="14sp"
+                android:text="確定"
+                app:go_active_text_color="@color/white"
+                app:go_reverse_color="true"/>
+            <com.gobox.core.ui.GoButton
+                android:id="@+id/btn_tips_10"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="4dp"
+                android:textSize="18sp"
+                android:text="+10"
+                app:go_active="false"
+                app:go_inactive_background_color="@color/white"
+                app:go_inactive_text_color="@color/black"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal"
         android:background="@color/black">
