@@ -61,6 +61,11 @@ class GoButton: AppCompatButton {
         // set default padding to zero
         setPadding(0, 0, 0, 0)
 
+        // resize drawables to text size
+        compoundDrawables.forEach {
+
+        }
+
         // handle left & right drawables
         if (compoundDrawables[0]!=null || compoundDrawables[1]!=null || compoundDrawables[2]!=null || compoundDrawables[3]!=null) {
             // has drawable images
@@ -124,7 +129,7 @@ class GoButton: AppCompatButton {
         // 3. Set image color
         compoundDrawables.forEach {
             if (it != null) {
-                it.colorFilter = PorterDuffColorFilter(textColor, PorterDuff.Mode.SRC_IN)
+                it.colorFilter = PorterDuffColorFilter(textColor, PorterDuff.Mode.MULTIPLY)
             }
         }
     }

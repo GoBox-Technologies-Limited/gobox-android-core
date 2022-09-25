@@ -135,7 +135,7 @@
             android:layout_marginEnd="4dp"
             android:textSize="18sp"
             android:text="確定叫車"
-            android:drawableLeft="@drawable/ic_tick_circle"
+            android:drawableLeft="@mipmap/ic_launcher"
             android:drawableRight="@drawable/ic_tick_circle"
             app:go_active="false"/>
         <com.gobox.core.ui.GoButton
