@@ -15,6 +15,7 @@ class GoButton: AppCompatButton {
     private var active: Boolean = true
     private var reverseColor: Boolean = false
     private var radius: Float = 16F
+    private var iconSize: Float? = null
     private var activeBackgroundColorResId: Int = R.color.button_active
     private var activeTextColorResId: Int = R.color.button_text_active
     private var inactiveBackgroundColorResId: Int = R.color.button_inactive
@@ -36,6 +37,9 @@ class GoButton: AppCompatButton {
                 }
                 R.styleable.GoButton_go_radius -> {
                     radius = myAttrs.getDimension(attr, 16F)
+                }
+                R.styleable.GoButton_go_icon_size -> {
+                    iconSize = myAttrs.getDimension(attr, 16F)
                 }
                 R.styleable.GoButton_go_active_background_color -> {
                     activeBackgroundColorResId = myAttrs.getResourceId(attr, 0)
@@ -142,10 +146,10 @@ class GoButton: AppCompatButton {
         val newDrawables = ArrayList<Drawable?>()
         compoundDrawables.forEach { drawable ->
             if (drawable != null) {
-//                val bitmap = Bitmap.createScaledBitmap(drawable.toBitmap(width = textSize.toInt(), height = textSize.toInt()), textSize.toInt(), textSize.toInt(), false)
-//                newDrawables.add(bitmap.toDrawable(context.resources))
-                val draw = ScaleDrawable(drawable, 0, textSize, textSize).drawable
-                draw!!.setBounds(0, 0, textSize.toInt(), textSize.toInt())
+                var size = textSize
+                if (iconSize!=null) size = iconSize!!
+                val draw = ScaleDrawable(drawable, 0, size, size).drawable
+                draw!!.setBounds(0, 0, size.toInt(), size.toInt())
                 newDrawables.add(draw)
             } else {
                 newDrawables.add(null)
