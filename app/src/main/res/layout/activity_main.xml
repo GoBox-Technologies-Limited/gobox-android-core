@@ -61,7 +61,8 @@
                 android:layout_marginEnd="4dp"
                 android:textSize="23sp"
                 android:text="Button"
-                android:drawableLeft="@drawable/ic_tick_circle"/>
+                android:drawableLeft="@drawable/ic_tick_circle"
+                app:go_active_background_color="@android:color/holo_blue_dark"/>
             <com.gobox.core.ui.GoButton
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
@@ -146,7 +147,8 @@
             android:textSize="18sp"
             android:text="確定叫車"
             android:drawableTop="@drawable/ic_tick_circle"
-            app:go_active="false"/>
+            app:go_active="false"
+            app:go_icon_size="32dp"/>
         <com.gobox.core.ui.GoButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

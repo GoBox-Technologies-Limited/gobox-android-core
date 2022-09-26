@@ -7,9 +7,8 @@ import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.ScaleDrawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.graphics.drawable.toBitmap
-import androidx.core.graphics.drawable.toDrawable
 import com.gobox.core.R
+import java.lang.Math.ceil
 
 class GoButton: AppCompatButton {
     private var active: Boolean = true
@@ -85,24 +84,30 @@ class GoButton: AppCompatButton {
             }
 
             if (compoundDrawables[1]!=null) {
-                // add left drawable width with default padding 2
-                drawableHeight += compoundDrawables[1].intrinsicHeight + 2
+                // add left drawable width
+                if (iconSize!=null) {
+                    drawableHeight += iconSize!!.toInt()
+                } else {
+                    drawableHeight += compoundDrawables[1].intrinsicHeight
+                }
             }
             if (compoundDrawables[3]!=null) {
-                // add right drawable width with default padding 2
-                drawableHeight += compoundDrawables[3].intrinsicHeight + 2
+                // add right drawable width
+                if (iconSize!=null) {
+                    drawableHeight += iconSize!!.toInt()
+                } else {
+                    drawableHeight += compoundDrawables[3].intrinsicHeight
+                }
             }
         }
-        val textWidth = paint.measureText(text.toString(), 0, text.length)
-        val textHeight = paint.fontMetrics.bottom - paint.fontMetrics.top
-        var horizontalPadding: Int = ((width - drawableWidth - textWidth) / 2).toInt()
-        if (horizontalPadding < 0) {
-            horizontalPadding = 0
-        }
-        var verticalPadding: Int = ((height - drawableHeight - textHeight) / 2).toInt()
-        if (verticalPadding < 0) {
-            verticalPadding = 0
-        }
+
+        val textWidth = kotlin.math.ceil(paint.measureText(text.toString(), 0, text.length))
+        var horizontalPadding: Int = kotlin.math.floor((width - drawableWidth - textWidth) / 2).toInt()
+        if (horizontalPadding < 0) horizontalPadding = 0
+
+        val textHeight = kotlin.math.ceil(paint.fontMetrics.bottom - paint.fontMetrics.top).toInt()
+        var verticalPadding: Int = kotlin.math.floor((height - drawableHeight - textHeight) / 2.0F).toInt()
+        if (verticalPadding < 0) verticalPadding = 0
 
         setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding)
 
