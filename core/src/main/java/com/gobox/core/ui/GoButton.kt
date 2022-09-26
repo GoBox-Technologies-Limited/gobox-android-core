@@ -149,12 +149,17 @@ class GoButton: AppCompatButton {
 
         // 4. Resize drawables
         val newDrawables = ArrayList<Drawable?>()
-        compoundDrawables.forEach { drawable ->
+        compoundDrawables.forEachIndexed { i, drawable ->
             if (drawable != null) {
                 var size = textSize
                 if (iconSize!=null) size = iconSize!!
                 val draw = ScaleDrawable(drawable, 0, size, size).drawable
-                draw!!.setBounds(0, 0, size.toInt(), size.toInt())
+                if (i==0 || i==2) {
+                    // left or right
+                    draw!!.setBounds(0, 2, size.toInt(), size.toInt()+2)
+                } else {
+                    draw!!.setBounds(0, 0, size.toInt(), size.toInt())
+                }
                 newDrawables.add(draw)
             } else {
                 newDrawables.add(null)
