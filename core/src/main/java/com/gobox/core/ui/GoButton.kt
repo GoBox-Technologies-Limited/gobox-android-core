@@ -84,19 +84,19 @@ class GoButton: AppCompatButton {
             }
 
             if (compoundDrawables[1]!=null) {
-                // add left drawable width
+                // add left drawable width with 4 buffer
                 if (iconSize!=null) {
-                    drawableHeight += iconSize!!.toInt()
+                    drawableHeight += iconSize!!.toInt() + 4
                 } else {
-                    drawableHeight += compoundDrawables[1].intrinsicHeight
+                    drawableHeight += compoundDrawables[1].intrinsicHeight + 4
                 }
             }
             if (compoundDrawables[3]!=null) {
-                // add right drawable width
+                // add right drawable width with 4 buffer
                 if (iconSize!=null) {
-                    drawableHeight += iconSize!!.toInt()
+                    drawableHeight += iconSize!!.toInt() + 4
                 } else {
-                    drawableHeight += compoundDrawables[3].intrinsicHeight
+                    drawableHeight += compoundDrawables[3].intrinsicHeight + 4
                 }
             }
         }
