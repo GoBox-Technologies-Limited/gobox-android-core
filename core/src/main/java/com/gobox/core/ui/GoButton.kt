@@ -2,9 +2,13 @@ package com.gobox.core.ui
 
 import android.content.Context
 import android.graphics.*
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
+import android.graphics.drawable.ScaleDrawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.graphics.drawable.toBitmap
+import androidx.core.graphics.drawable.toDrawable
 import com.gobox.core.R
 
 class GoButton: AppCompatButton {
@@ -133,6 +137,21 @@ class GoButton: AppCompatButton {
                 it.colorFilter = PorterDuffColorFilter(textColor, PorterDuff.Mode.MULTIPLY)
             }
         }
+
+        // 4. Resize drawables
+        val newDrawables = ArrayList<Drawable?>()
+        compoundDrawables.forEach { drawable ->
+            if (drawable != null) {
+//                val bitmap = Bitmap.createScaledBitmap(drawable.toBitmap(width = textSize.toInt(), height = textSize.toInt()), textSize.toInt(), textSize.toInt(), false)
+//                newDrawables.add(bitmap.toDrawable(context.resources))
+                val draw = ScaleDrawable(drawable, 0, textSize, textSize).drawable
+                draw!!.setBounds(0, 0, textSize.toInt(), textSize.toInt())
+                newDrawables.add(draw)
+            } else {
+                newDrawables.add(null)
+            }
+        }
+        setCompoundDrawables(newDrawables[0],newDrawables[1],newDrawables[2],newDrawables[3])
 
         stateListAnimator = null
     }

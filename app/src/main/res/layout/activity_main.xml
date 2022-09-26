@@ -58,7 +58,7 @@
                 android:layout_height="32dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="4dp"
-                android:textSize="16sp"
+                android:textSize="23sp"
                 android:text="Button"
                 android:drawableLeft="@drawable/ic_tick_circle"/>
             <com.gobox.core.ui.GoButton

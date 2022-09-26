@@ -2,6 +2,7 @@
 <resources>
     <declare-styleable name="GoButton">
         <attr name="go_radius" format="dimension"/>
+        <attr name="go_icon_size" format="dimension"/>
         <attr name="go_active" format="boolean"/>
         <attr name="go_reverse_color" format="boolean"/>
         <attr name="go_active_background_color" format="reference"/>
