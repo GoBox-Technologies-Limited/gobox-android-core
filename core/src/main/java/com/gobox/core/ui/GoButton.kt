@@ -8,10 +8,12 @@ import android.graphics.drawable.ScaleDrawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatButton
 import com.gobox.core.R
+import timber.log.Timber
 import java.lang.Math.ceil
 
 class GoButton: AppCompatButton {
     private var active: Boolean = true
+    private var border: Boolean = false
     private var reverseColor: Boolean = false
     private var radius: Float = 16F
     private var iconSize: Float? = null
@@ -19,6 +21,12 @@ class GoButton: AppCompatButton {
     private var activeTextColorResId: Int = R.color.button_text_active
     private var inactiveBackgroundColorResId: Int = R.color.button_inactive
     private var inactiveTextColorResId: Int = R.color.button_text_inactive
+
+    private var hasSetPadding = false
+    private var originPadding = ArrayList<Int>(listOf(0,0,0,0))
+    private var drawablePadding = ArrayList<Int>(listOf(0,0,0,0))
+    private var textTotalWidth = 0
+    private var textTotalHeight = 0
 
     constructor(ctx: Context): super(ctx) {
         refreshButton()
@@ -30,6 +38,9 @@ class GoButton: AppCompatButton {
             when (val attr = myAttrs.getIndex(i)) {
                 R.styleable.GoButton_go_active -> {
                     active = myAttrs.getBoolean(attr, true)
+                }
+                R.styleable.GoButton_go_border -> {
+                    border = myAttrs.getBoolean(attr, true)
                 }
                 R.styleable.GoButton_go_reverse_color -> {
                     reverseColor = myAttrs.getBoolean(attr, true)
@@ -63,64 +74,26 @@ class GoButton: AppCompatButton {
     }
 
     override fun onDraw(canvas: Canvas?) {
-        text = text.toString().uppercase()
+        if (!hasSetPadding) {
+            hasSetPadding = true
+            var horizontalPadding: Int = kotlin.math.floor((width - drawablePadding[0] - drawablePadding[2] - textTotalWidth) / 2.0).toInt()
+            if (horizontalPadding>8) horizontalPadding -= 8
+            val verticalPadding: Int = kotlin.math.floor((height - drawablePadding[1] - drawablePadding[3] - textTotalHeight) / 2.0).toInt()
+            setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding)
 
-        // set default padding to zero
-        setPadding(0, 0, 0, 0)
-
-        // handle left & right drawables
-        var drawableWidth = 0
-        var drawableHeight = 0
-
-        if (compoundDrawables[0]!=null || compoundDrawables[1]!=null || compoundDrawables[2]!=null || compoundDrawables[3]!=null) {
-            // has drawable images
-            if (compoundDrawables[0]!=null) {
-                // add left drawable width with default padding 2
-                drawableWidth += compoundDrawables[0].intrinsicWidth + 2
-            }
-            if (compoundDrawables[2]!=null) {
-                // add right drawable width with default padding 2
-                drawableWidth += compoundDrawables[2].intrinsicWidth + 2
-            }
-
-            if (compoundDrawables[1]!=null) {
-                // add left drawable width with 4 buffer
-                if (iconSize!=null) {
-                    drawableHeight += iconSize!!.toInt() + 4
-                } else {
-                    drawableHeight += compoundDrawables[1].intrinsicHeight + 4
-                }
-            }
-            if (compoundDrawables[3]!=null) {
-                // add right drawable width with 4 buffer
-                if (iconSize!=null) {
-                    drawableHeight += iconSize!!.toInt() + 4
-                } else {
-                    drawableHeight += compoundDrawables[3].intrinsicHeight + 4
-                }
-            }
+            Timber.tag("GoButton").e("${width}, ${height}, ${originPadding}, ${drawablePadding}, ${textTotalWidth}, ${textTotalHeight}")
         }
-
-        val textWidth = kotlin.math.ceil(paint.measureText(text.toString(), 0, text.length))
-        var horizontalPadding: Int = kotlin.math.floor((width - drawableWidth - textWidth) / 2).toInt()
-        if (horizontalPadding < 0) horizontalPadding = 0
-
-        val textHeight = kotlin.math.ceil(paint.fontMetrics.bottom - paint.fontMetrics.top).toInt()
-        var verticalPadding: Int = kotlin.math.floor((height - drawableHeight - textHeight) / 2.0F).toInt()
-        if (verticalPadding < 0) verticalPadding = 0
-
-        setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding)
 
         super.onDraw(canvas)
     }
 
     private fun refreshButton() {
-        var borderColor = context.getColor(activeBackgroundColorResId)
+        var borderColor = if (border) {context.getColor(activeTextColorResId)} else {context.getColor(activeBackgroundColorResId)}
         var backgroundColor = context.getColor(activeBackgroundColorResId)
         var textColor = context.getColor(activeTextColorResId)
 
         if (!active) {
-            borderColor = context.getColor(inactiveBackgroundColorResId)
+            borderColor = if (border) {context.getColor(inactiveTextColorResId)} else {context.getColor(inactiveBackgroundColorResId)}
             backgroundColor = context.getColor(inactiveBackgroundColorResId)
             textColor = context.getColor(inactiveTextColorResId)
         }
@@ -137,14 +110,30 @@ class GoButton: AppCompatButton {
         gd.setStroke(2, borderColor)
         background = gd
 
-        // 2. Set text color
+        // 2. Set text
+        text = text.toString().uppercase()
         setTextColor(textColor)
 
-        // 3. Set image color
-        compoundDrawables.forEach {
-            if (it != null) {
-                it.colorFilter = PorterDuffColorFilter(textColor, PorterDuff.Mode.MULTIPLY)
-            }
+        // 3. Set image color & Get original padding
+        originPadding[0] = totalPaddingStart
+        if (compoundDrawables[0]!=null) { // left
+            compoundDrawables[0].colorFilter = PorterDuffColorFilter(textColor, PorterDuff.Mode.MULTIPLY)
+            originPadding[0] = originPadding[0] - compoundDrawables[0].intrinsicWidth
+        }
+        originPadding[1] = totalPaddingTop
+        if (compoundDrawables[1]!=null) { // top
+            compoundDrawables[1].colorFilter = PorterDuffColorFilter(textColor, PorterDuff.Mode.MULTIPLY)
+            originPadding[1] = originPadding[1] - compoundDrawables[1].intrinsicHeight
+        }
+        originPadding[2] = totalPaddingEnd
+        if (compoundDrawables[2]!=null) { // right
+            compoundDrawables[2].colorFilter = PorterDuffColorFilter(textColor, PorterDuff.Mode.MULTIPLY)
+            originPadding[2] = originPadding[2] - compoundDrawables[2].intrinsicWidth
+        }
+        originPadding[3] = totalPaddingBottom
+        if (compoundDrawables[3]!=null) { // bottom
+            compoundDrawables[3].colorFilter = PorterDuffColorFilter(textColor, PorterDuff.Mode.MULTIPLY)
+            originPadding[3] = originPadding[3] - compoundDrawables[3].intrinsicHeight
         }
 
         // 4. Resize drawables
@@ -156,7 +145,7 @@ class GoButton: AppCompatButton {
                 val draw = ScaleDrawable(drawable, 0, size, size).drawable
                 if (i==0 || i==2) {
                     // left or right
-                    draw!!.setBounds(0, 2, size.toInt(), size.toInt()+2)
+                    draw!!.setBounds(0, 0, size.toInt(), size.toInt())
                 } else {
                     draw!!.setBounds(0, 0, size.toInt(), size.toInt())
                 }
@@ -166,6 +155,14 @@ class GoButton: AppCompatButton {
             }
         }
         setCompoundDrawables(newDrawables[0],newDrawables[1],newDrawables[2],newDrawables[3])
+
+        if (compoundDrawables[0]!=null) drawablePadding[0] = totalPaddingStart - originPadding[0]
+        if (compoundDrawables[1]!=null) drawablePadding[1] = totalPaddingTop - originPadding[1]
+        if (compoundDrawables[2]!=null) drawablePadding[2] = totalPaddingEnd - originPadding[2]
+        if (compoundDrawables[3]!=null) drawablePadding[3] = totalPaddingBottom - originPadding[3]
+
+        textTotalWidth = kotlin.math.ceil(paint.measureText(text.toString(), 0, text.length)).toInt()
+        textTotalHeight = kotlin.math.ceil(paint.fontMetrics.bottom - paint.fontMetrics.top).toInt()
 
         stateListAnimator = null
     }
