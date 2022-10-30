@@ -8,8 +8,6 @@ import android.graphics.drawable.ScaleDrawable
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatButton
 import com.gobox.core.R
-import timber.log.Timber
-import java.lang.Math.ceil
 
 class GoButton: AppCompatButton {
     private var active: Boolean = true
@@ -80,8 +78,6 @@ class GoButton: AppCompatButton {
             if (horizontalPadding>8) horizontalPadding -= 8
             val verticalPadding: Int = kotlin.math.floor((height - drawablePadding[1] - drawablePadding[3] - textTotalHeight) / 2.0).toInt()
             setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding)
-
-            Timber.tag("GoButton").e("${width}, ${height}, ${originPadding}, ${drawablePadding}, ${textTotalWidth}, ${textTotalHeight}")
         }
 
         super.onDraw(canvas)
