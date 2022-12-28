@@ -5,7 +5,9 @@ import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.ScaleDrawable
+import android.text.Layout.Alignment
 import android.util.AttributeSet
+import android.view.Gravity
 import androidx.appcompat.widget.AppCompatButton
 import com.gobox.core.R
 import timber.log.Timber
@@ -81,9 +83,9 @@ class GoButton: AppCompatButton {
             var horizontalPadding: Int = kotlin.math.floor((width - drawablePadding[0] - drawablePadding[2] - textTotalWidth) / 2.0).toInt()
             if (horizontalPadding>8) horizontalPadding -= 8
             var verticalPadding: Int = kotlin.math.floor((height - drawablePadding[1] - drawablePadding[3] - textTotalHeight) / 2.0).toInt()
-            if (verticalPadding>8) verticalPadding -= 2
+            if (verticalPadding>8) verticalPadding -= 8
 
-            setPadding(horizontalPadding, verticalPadding, horizontalPadding, verticalPadding)
+            setPadding(horizontalPadding, verticalPadding-2, horizontalPadding, verticalPadding)
         }
 
         super.onDraw(canvas)
@@ -144,7 +146,7 @@ class GoButton: AppCompatButton {
             if (drawable != null) {
                 var size = textSize
                 if (iconSize!=null) size = iconSize!!
-                val draw = ScaleDrawable(drawable, 0, size, size).drawable
+                val draw = ScaleDrawable(drawable, Gravity.CENTER, size, size).drawable
                 if (i==0 || i==2) {
                     // left or right
                     draw!!.setBounds(0, 0, size.toInt(), size.toInt())
