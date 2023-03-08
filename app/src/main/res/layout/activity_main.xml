@@ -63,27 +63,31 @@
                 android:drawableLeft="@drawable/ic_tick_circle"
                 android:text="Button"
                 android:textSize="23sp"
-                app:go_active_background_color="@android:color/holo_blue_dark" />
+                app:go_active_background_color="@android:color/holo_blue_dark"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <com.gobox.core.ui.GoButton
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
                 android:layout_marginEnd="4dp"
-                android:textSize="14sp"
                 android:text="確定"
+                android:textSize="14sp"
                 app:go_active_text_color="@color/white"
-                app:go_reverse_color="true"/>
+                app:go_reverse_color="true"
+                tools:ignore="TouchTargetSizeCheck" />
+
             <com.gobox.core.ui.GoButton
                 android:id="@+id/btn_tips_10"
                 android:layout_width="0dp"
                 android:layout_height="36dp"
-                android:layout_weight="1"
                 android:layout_marginHorizontal="4dp"
-                android:textSize="18sp"
+                android:layout_weight="1"
                 android:text="+10"
+                android:textSize="18sp"
                 app:go_active="false"
                 app:go_inactive_background_color="@color/white"
-                app:go_inactive_text_color="@color/black"/>
+                app:go_inactive_text_color="@color/black"
+                tools:ignore="TouchTargetSizeCheck" />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -214,13 +218,15 @@
             android:textSize="18sp"
             android:text="確定叫車12314"
             app:go_active="false"/>
+
         <com.gobox.core.ui.GoButton
             android:layout_width="wrap_content"
-            android:layout_height="42dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            android:textSize="18sp"
             android:text="取消柯打"
-            app:go_active="false"/>
+            android:textSize="18sp"
+            app:go_active="false"
+            tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
 
 </LinearLayout>

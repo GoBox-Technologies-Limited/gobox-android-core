@@ -5,12 +5,11 @@ import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.ScaleDrawable
-import android.text.Layout.Alignment
 import android.util.AttributeSet
 import android.view.Gravity
 import androidx.appcompat.widget.AppCompatButton
 import com.gobox.core.R
-import timber.log.Timber
+import java.io.CharArrayReader
 
 class GoButton: AppCompatButton {
     private var active: Boolean = true
