@@ -11,4 +11,8 @@
         <attr name="go_inactive_background_color" format="reference"/>
         <attr name="go_inactive_text_color" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="GoEditText">
+        <attr name="go_is_error" format="boolean"/>
+    </declare-styleable>
 </resources>
