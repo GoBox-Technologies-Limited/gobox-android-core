@@ -29,8 +29,12 @@ class GoEditText: AppCompatEditText {
     private fun refreshComponent() {
         if (isError) {
             setBackgroundResource(R.drawable.edit_error)
+            setTextColor(context.getColor(R.color.text_red))
+            setHintTextColor(context.getColor(R.color.text_red))
         } else {
             setBackgroundResource(R.drawable.edit_normal)
+            setTextColor(context.getColor(R.color.text_main))
+            setHintTextColor(context.getColor(R.color.text_hint))
         }
     }
 

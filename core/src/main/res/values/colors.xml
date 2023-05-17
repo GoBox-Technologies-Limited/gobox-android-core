@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Should be override in other application -->
+    <color name="text_main">#060606</color>
+    <color name="text_hint">#8A8A8A</color>
+    <color name="text_grey">#585858</color>
+    <color name="text_red">#CD4A4A</color>
+
     <color name="edit_background">#FFFFFF</color>
     <color name="edit_border">#8A8A8A</color>
     <color name="edit_error">#CD4A4A</color>
