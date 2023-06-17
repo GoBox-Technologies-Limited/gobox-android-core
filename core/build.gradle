@@ -42,15 +42,15 @@ dependencies {
     implementation 'com.jakewharton.timber:timber:5.0.1'
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                from components.release
-                groupId = 'com.github.GoBox-Technologies-Limited'
-                artifactId = 'gobox-android-core'
-                version = '0.1.11'
-            }
-        }
-    }
-}
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            release(MavenPublication) {
+//                from components.release
+//                groupId = 'com.github.GoBox-Technologies-Limited'
+//                artifactId = 'gobox-android-core'
+//                version = '0.1.11'
+//            }
+//        }
+//    }
+//}
