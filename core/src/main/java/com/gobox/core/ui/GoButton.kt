@@ -172,7 +172,6 @@ class GoButton: AppCompatButton {
 
     fun setActive(act: Boolean) {
         active = act
-        isEnabled = act
         refreshButton()
     }
 
