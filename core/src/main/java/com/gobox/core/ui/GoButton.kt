@@ -73,7 +73,7 @@ class GoButton: AppCompatButton {
         refreshButton()
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         if (!hasSetPadding) {
             textTotalWidth = kotlin.math.ceil(paint.measureText(text.toString(), 0, text.length)).toInt()
             textTotalHeight = kotlin.math.ceil(paint.fontMetrics.bottom - paint.fontMetrics.top).toInt()
